@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+/src/main/generated/
+/src/main/generated/com/hyomee/hybird/h2/entity/QDemoEntity.java
+/data/demodb.mv.db
