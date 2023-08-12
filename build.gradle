@@ -26,6 +26,9 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.projectlombok:lombok:1.18.22'
+    testImplementation 'org.projectlombok:lombok:1.18.22'
+    testImplementation 'org.projectlombok:lombok:1.18.22'
 
     /**********************************************
      * db 관련
@@ -109,3 +112,7 @@ tasks.withType(JavaCompile).configureEach {
 clean.doLast {
     file(querydslDir).deleteDir()
 }
+
+//test {
+//    exclude '**/*'
+//}

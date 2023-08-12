@@ -3,10 +3,11 @@ package com.hyomee.hybird.h2.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+
+@Setter
+@Getter
 @Table(name = "TB_DEMO")
 @AllArgsConstructor
 @NoArgsConstructor
