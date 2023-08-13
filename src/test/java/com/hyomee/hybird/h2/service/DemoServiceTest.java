@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 @Slf4j
 @SpringBootTest
@@ -20,6 +20,6 @@ class DemoServiceTest {
   @Test
   void retrieveDemo() {
     List<DemoDTO> demoDTOs = demoService.retrieveDemo();
-    System.out.println(demoDTOs.toString());
+    log.info("Test ... " + demoDTOs.toString());
   }
 }

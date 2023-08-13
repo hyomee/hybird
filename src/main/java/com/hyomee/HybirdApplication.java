@@ -1,4 +1,4 @@
-package com.hyomee.hybird;
+package com.hyomee;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

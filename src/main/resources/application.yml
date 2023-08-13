@@ -1,6 +1,9 @@
 spring:
   application:
     name: hyomee
+  messages:
+    basename: message/message, message/exception
+    encoding: UTF-8
   h2:
     console:
       enabled: true                     # 콘솔 사용
@@ -41,6 +44,7 @@ spring:
 #        physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
     open-in-view: false
 
+
 mybatis:
   mapper-locations: config/mybatis/mapper/**/*.xml
   configuration:
@@ -48,16 +52,19 @@ mybatis:
 
 logging:
   level:
-    com:
-      zaxxer:
-        hikari:
-          HikariConfig: DEBUG
-#    org:
-#      hibernate:
-#        SQL: DEBUG
+    com.zaxxer.hikari.HikariConfig: DEBUG
+    com.hyomee:.hybird: DEBUG
+#    org.hibernate.SQL: DEBUG
 #    type:
 #      descriptor:
 #        sql:
 #          BasicBinder: TRACE
 
 
+##########################################################
+# 사용자 정의
+##########################################################
+user:
+  error:
+    fillInStackTrace: false
+    printStackTrace: true
