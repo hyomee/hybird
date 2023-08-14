@@ -1,6 +1,9 @@
 spring:
   application:
     name: hyomee
+  config:
+    import:
+      - classpath:/config/custom/custom.yml
   messages:
     basename: message/message, message/exception
     encoding: UTF-8
@@ -26,23 +29,20 @@ spring:
       minimum-idle: 10                  # pool에 유지할 유휴 connection 최소 개수
       maximum-pool-size: 50             # pool에 유지시킬 수 있는 최대 connection 수
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect  # 접속할 database의 SQL Dialect 설정, JPA를 활용하여 동적 쿼리 생성시, database에 맞는 방언 sql을 생성
-    hibernate:
-      connection:
-        provider_class: com.zaxxer.hikari.hibernate.HikariConnectionProvider
-      show-sql: true                  # 모든 SQL문을 콘솔로 출력
-      format_sql: true                # 모든 SQL문을 콘솔로 출력해 준다.
-      hbm2ddl.auto: update            # 앱 시작시 @Entity로 정의한 테이블의 create 문 실행
-      use_sql_comments: true          # 디버깅이 용이하도록 SQL문 이외에 추가적인 정보를 출력
-#    properties:
-#      hibernate:
-#        show-sql: true                  # 모든 SQL문을 콘솔로 출력
-#        format_sql: true                # 모든 SQL문을 콘솔로 출력해 준다.
-#        hbm2ddl.auto: update            # 앱 시작시 @Entity로 정의한 테이블의 create 문 실행
-#        use_sql_comments: true          # 디버깅이 용이하도록 SQL문 이외에 추가적인 정보를 출력
+#    database-platform: org.hibernate.dialect.H2Dialect  # 접속할 database의 SQL Dialect 설정, JPA를 활용하여 동적 쿼리 생성시, database에 맞는 방언 sql을 생성
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        show-sql: true                  # 모든 SQL문을 콘솔로 출력
+        format_sql: true                # 모든 SQL문을 콘솔로 출력해 준다.
+        hbm2ddl.auto: update            # 앱 시작시 @Entity로 정의한 테이블의 create 문 실행
+        highlight_sql: true
+        use_sql_comments: true          # 디버깅이 용이하도록 SQL문 이외에 추가적인 정보를 출력
 #        implicit_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
 #        physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-    open-in-view: false
+
+
 
 
 mybatis:
@@ -52,19 +52,8 @@ mybatis:
 
 logging:
   level:
-    com.zaxxer.hikari.HikariConfig: DEBUG
-    com.hyomee:.hybird: DEBUG
-#    org.hibernate.SQL: DEBUG
-#    type:
-#      descriptor:
-#        sql:
-#          BasicBinder: TRACE
+    root: info
+  config: classpath:logback-spring.xml
 
 
-##########################################################
-# 사용자 정의
-##########################################################
-user:
-  error:
-    fillInStackTrace: false
-    printStackTrace: true
+
