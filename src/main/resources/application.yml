@@ -6,6 +6,7 @@ spring:
   config:
     import:
       - classpath:/config/custom/custom.yml
+      - classpath:/config/custom/el.yml
   messages:
     basename: message/message, message/exception
     encoding: UTF-8
@@ -43,10 +44,15 @@ spring:
         use_sql_comments: true          # 디버깅이 용이하도록 SQL문 이외에 추가적인 정보를 출력
 #        implicit_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
 #        physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-  elasticsearch:
-    uris: localhost:9200
-    username: elastic
-    password: nyqJUBK*R9JTDt0*OmwY
+#  elasticsearch:
+#    uris: localhost:9200
+#    username: elastic
+#    password: JShfI-3you=Nq5gQxE2k
+#    restclient:
+#      ssl:
+#        bundle: 12cca06a48a6d19388ae055bc5650dab612b5e91401f2322d6542a577491d211
+#
+
 
 
 

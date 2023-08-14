@@ -50,7 +50,10 @@ dependencies {
     /**********************************************
      * NoSql
      **********************************************/
-    // implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+    // implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch:3.0.4'
+    // https://mvnrepository.com/artifact/org.springframework.data/spring-data-elasticsearch
+    implementation group: 'org.springframework.data', name: 'spring-data-elasticsearch', version: '5.0.3'
+
     // implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
     /**********************************************

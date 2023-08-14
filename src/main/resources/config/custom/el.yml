@@ -1,0 +1,7 @@
+es:
+  uris: localhost
+  port: 9200
+  username: elastic
+  password: JShfI-3you=Nq5gQxE2k
+  schemeName: https
+  ca: 12cca06a48a6d19388ae055bc5650dab612b5e91401f2322d6542a577491d211
