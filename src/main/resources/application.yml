@@ -1,6 +1,8 @@
 spring:
   application:
     name: hyomee
+  profiles:
+    active: local
   config:
     import:
       - classpath:/config/custom/custom.yml
@@ -41,7 +43,10 @@ spring:
         use_sql_comments: true          # 디버깅이 용이하도록 SQL문 이외에 추가적인 정보를 출력
 #        implicit_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
 #        physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-
+  elasticsearch:
+    uris: localhost:9200
+    username: elastic
+    password: nyqJUBK*R9JTDt0*OmwY
 
 
 

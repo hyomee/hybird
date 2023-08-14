@@ -1,16 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+  <!-- https://lovethefeel.tistory.com/89 -->
+  <springProperty name="LOG_LEVEL" source="logging.level.root" scope="context"/>
+  <springProperty name="SERVICE_NAME" source="spring.application.name" scope="context"/>
+  <property name="LOG_PATH" value="${LOG_PATH:-./logs}"/>
+  <property name="LOG_FILE" value="${LOG_FILE:-app}"/>
+  <property name="LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}][%thread] %-5level %logger{36} - %msg%n"/>
+  <property name="MAX_HISTORY" value="${LOGBACK_ROLLINGPOLICY_MAX_HISTORY:-2}"/>
+  <property name="MAX_FILESIZE" value="5MB"/>
 
-  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-    <!-- encoders are assigned the type
-         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+  <appender name="CONSOLE_APPENDER" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
-      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+      <pattern>${LOG_PATTERN}</pattern>
     </encoder>
   </appender>
 
-  <root level="info">
-    <appender-ref ref="console" />
+  <appender name="FILE_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <encoder>
+      <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+    <file>${LOG_PATH}/${LOG_FILE}.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_PATH}/${LOG_FILE}.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+      <maxHistory>${MAX_HISTORY}</maxHistory>
+      <maxFileSize>${MAX_FILESIZE}</maxFileSize>
+    </rollingPolicy>
+  </appender>
+
+  <root level="${LOG_LEVEL}">
+    <appender-ref ref="FILE_APPENDER"/>
+    <springProfile name="local">
+      <appender-ref ref="CONSOLE_APPENDER"/>
+    </springProfile>
   </root>
+
 
   <!-- Logger -->
   <logger name="com.hyomee.*" level="DEBUG" appender-ref="console" />
