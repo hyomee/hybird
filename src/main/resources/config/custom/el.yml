@@ -1,7 +1,17 @@
+#es:
+#  uris: localhost
+#  port: 9200
+#  username: elastic
+#  password: JShfI-3you=Nq5gQxE2k
+#  schemeName: https
+#  ca: 12cca06a48a6d19388ae055bc5650dab612b5e91401f2322d6542a577491d211
+
 es:
-  uris: localhost
+  host: 192.168.210.52
   port: 9200
   username: elastic
-  password: JShfI-3you=Nq5gQxE2k
+  password: =dq2XKtp_p2DF_2QiLys
   schemeName: https
-  ca: 12cca06a48a6d19388ae055bc5650dab612b5e91401f2322d6542a577491d211
+  ssl: 1
+  fingerprint: 190f95778c4f9b2d5247d940b9665c3494b6f930914796cc4274c432150440a7
+  cadrt: C:\PRJ\hybird\src\main\resources\config\elk\http_ca.crt
