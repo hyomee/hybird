@@ -120,6 +120,7 @@ public class ElasticSearchConfig {
     }
 
     private  RestClient getRestCaClient() {
+
         log.debug("#### getRestCaClient");
 
         RestClient restClient;
