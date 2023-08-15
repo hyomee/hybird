@@ -5,21 +5,17 @@ import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.TransportUtils;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
+import com.hyomee.core.exception.BizException.BizException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.Header;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.CredentialsProvider;
 import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.message.BasicHeader;
 import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import javax.net.ssl.SSLContext;
@@ -37,13 +33,13 @@ public class ElasticSearchConfig {
     @Value("${es.host}")
     private String host;
 
-    @Value("${es.port}")
+    @Value("${es.port:9200}")
     private String port;
 
-    @Value("${es.schemeName}")
+    @Value("${es.schemeName:https}")
     private String schemeName;
 
-    @Value("${es.username}")
+    @Value("${es.username:elastic}")
     private String username;
 
     @Value("${es.password}")
@@ -52,21 +48,18 @@ public class ElasticSearchConfig {
     @Value("${es.fingerprint}")
     private String fingerprint;
 
-    @Value("${es.ssl:false}")
+    @Value("${es.ssl:1}")
     private String ssl;
 
     @Value("${es.cadrt:false}")
     private String cadrt;
 
 
-
     @Bean
-    public ElasticsearchClient getElasticSearchClient() throws IOException {
-        // https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/connecting.html
-   // https://github.com/sundharamurali/elasticsearch-springboot/tree/main
-
+    public ElasticsearchClient getElasticSearchClient()   {
         // Create the low-level client
-        RestClient restClient = restClient();
+        RestClient restClient = getRestClient();
+
         // Create the transport with a Jackson mapper
         ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
 
@@ -74,7 +67,21 @@ public class ElasticSearchConfig {
         return new ElasticsearchClient(transport);
     }
 
-    public void elasticsearchUtlInfo() {
+
+    public RestClient getRestClient()   {
+
+        logPrintElasticSearchInfo();
+
+        if ("ca".equals(ssl))  {
+            return getRestCaClient() ;
+        } else if ("fingerprint".equals(ssl))  {
+            return getRestFingerPrintClient();
+        } else {
+            return getRestPwdClient();
+        }
+    }
+
+    private void logPrintElasticSearchInfo() {
         log.debug("Host: " +  host);
         log.debug("Port: " +  port);
         log.debug("SchemeName: " +  schemeName);
@@ -84,22 +91,7 @@ public class ElasticSearchConfig {
         log.debug("cadrt: " +  cadrt);
     }
 
-    public RestClient restClient() throws IOException {
-        elasticsearchUtlInfo();
-        if ("1".equals(ssl))  {
-            return getRestSSLClient();
-        } else if ("2".equals(ssl))  {
-            return getRestSSLClient();
-        } else {
-            return getRestCaClient();
-        }
-    }
-
-
-    public  RestClient getRestPwdClient() {
-        log.debug("#### getRestPwdClient");
-//        Header[] defaultHeaders = new Header[1];
-//        defaultHeaders[0] = new BasicHeader("Authorization", "Basic ZWxhc3RpYzo9ZHEyWEt0cF9wMkRGXzJRaUx5cw==");
+    private  RestClient getRestPwdClient() {
 
         final BasicCredentialsProvider hasicCredentialsProvider = new BasicCredentialsProvider();
 
@@ -109,58 +101,66 @@ public class ElasticSearchConfig {
         RestClient restClient = RestClient.builder(new HttpHost(host, Integer.parseInt(port), schemeName))
                 .setHttpClientConfigCallback(httpClientBuilder ->
                         httpClientBuilder.setDefaultCredentialsProvider(hasicCredentialsProvider))
-
                 .build();
 
         return restClient;
     }
 
-    public  RestClient getRestSSLClient() {
+    private  RestClient getRestFingerPrintClient() {
 
         log.debug("#### getRestSSLClient");
+
         SSLContext sslContext = TransportUtils.sslContextFromCaFingerprint(fingerprint);
 
+        BasicCredentialsProvider basicCredentialsProvider =  getBasicCredentialsProvider();
 
-        BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
-        credsProv.setCredentials(
-                AuthScope.ANY,
-                new UsernamePasswordCredentials(username, password)
-        );
+        RestClient restClient = getRestAuthClient(sslContext, basicCredentialsProvider);
 
-        RestClient restClient = RestClient
-                .builder(new HttpHost(host, Integer.parseInt(port), schemeName)) // <3>
-                .setHttpClientConfigCallback(hc -> hc
-                        .setSSLContext(sslContext) // <4>
-                        .setDefaultCredentialsProvider(credsProv)
-                )
-                .build();
-
-        // Create the low-level client
         return restClient;
     }
 
-    public  RestClient getRestCaClient() throws IOException {
+    private  RestClient getRestCaClient() {
         log.debug("#### getRestCaClient");
+
+        RestClient restClient;
         File certFile = new File(String.valueOf(cadrt));
-        SSLContext sslContext = TransportUtils.sslContextFromHttpCaCrt(certFile);
+        try {
+            SSLContext sslContext = TransportUtils.sslContextFromHttpCaCrt(certFile);
+
+            BasicCredentialsProvider basicCredentialsProvider = getBasicCredentialsProvider();
+
+            restClient = getRestAuthClient( sslContext, basicCredentialsProvider);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);        }
+
+        if (restClient == null) {
+            throw new BizException("ElasticSearch Low-Level Clint (RestClient) Not Create ");
+        }
+
+        return restClient;
+    }
 
 
+
+    private BasicCredentialsProvider getBasicCredentialsProvider() {
         BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
+
         credsProv.setCredentials(
                 AuthScope.ANY,
                 new UsernamePasswordCredentials(username, password)
         );
 
-        RestClient restClient = RestClient
-                .builder(new HttpHost(host, Integer.parseInt(port), schemeName)) // <3>
-                .setHttpClientConfigCallback(hc -> hc
-                        .setSSLContext(sslContext) // <4>
-                        .setDefaultCredentialsProvider(credsProv)
-                )
-                .build();
+        return credsProv;
+    }
 
-        // Create the low-level client
-        return restClient;
+    private RestClient getRestAuthClient(SSLContext sslContext,
+                                         BasicCredentialsProvider basicCredentialsProvider) {
+        return RestClient.builder(new HttpHost(host, Integer.parseInt(port), schemeName))
+                .setHttpClientConfigCallback(hc -> hc
+                        .setSSLContext(sslContext)
+                        .setDefaultCredentialsProvider(basicCredentialsProvider))
+                .build();;
     }
 
 }

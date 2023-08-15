@@ -12,6 +12,6 @@ es:
   username: elastic
   password: =dq2XKtp_p2DF_2QiLys
   schemeName: https
-  ssl: 1
+  ssl: pwd        # pwd, fingerprint, ca
   fingerprint: 190f95778c4f9b2d5247d940b9665c3494b6f930914796cc4274c432150440a7
   cadrt: C:\PRJ\hybird\elk\http_ca.crt
