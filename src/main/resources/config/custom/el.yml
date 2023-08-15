@@ -6,12 +6,27 @@
 #  schemeName: https
 #  ca: 12cca06a48a6d19388ae055bc5650dab612b5e91401f2322d6542a577491d211
 
+# 사무실
+#es:
+#  host:  192.168.210.52
+#  port: 9200
+#  username: elastic
+#  password: JShfI-3you=Nq5gQxE2k
+#  schemeName: https
+#  ssl: pwd        # pwd, fingerprint, ca
+#  fingerprint: 12cca06a48a6d19388ae055bc5650dab612b5e91401f2322d6542a577491d211
+#  cadrt: D:\STUDY\SPRINGBOOT\hybird\elk\http_ca.crt
+
+# 홈
 es:
-  host: 192.168.210.52
+  host: 172.19.164.132
   port: 9200
   username: elastic
-  password: =dq2XKtp_p2DF_2QiLys
+  password: ji_DrcMq5xL+aCs+6VjO
   schemeName: https
-  ssl: pwd        # pwd, fingerprint, ca
-  fingerprint: 190f95778c4f9b2d5247d940b9665c3494b6f930914796cc4274c432150440a7
-  cadrt: C:\PRJ\hybird\elk\http_ca.crt
+  ssl: fingerprint        # pwd, fingerprint, ca
+  fingerprint: 8ff2a69c78554e2fbc80baa50742fe10de86583b13df24efd4c7f191f804fada
+  cadrt: D:\STUDY\SPRINGBOOT\hybird\elk\http_ca.crt
+
+doc:
+  demoIndex: demo
