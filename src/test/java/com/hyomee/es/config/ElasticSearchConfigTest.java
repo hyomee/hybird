@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.client.Request;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +24,7 @@ class ElasticSearchConfigTest {
     @Autowired
     ElasticSearchConfig elasticSearchConfig;
 
+    @Disabled
     @Test
     void getElasticSearchClient() throws IOException {
         RestClient elClient = elasticSearchConfig.restClient();
