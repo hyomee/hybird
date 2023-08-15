@@ -14,4 +14,4 @@ es:
   schemeName: https
   ssl: 1
   fingerprint: 190f95778c4f9b2d5247d940b9665c3494b6f930914796cc4274c432150440a7
-  cadrt: C:\PRJ\hybird\src\main\resources\config\elk\http_ca.crt
+  cadrt: C:\PRJ\hybird\elk\http_ca.crt
