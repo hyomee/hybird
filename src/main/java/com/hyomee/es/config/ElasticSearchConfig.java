@@ -160,7 +160,7 @@ public class ElasticSearchConfig {
                 .setHttpClientConfigCallback(hc -> hc
                         .setSSLContext(sslContext)
                         .setDefaultCredentialsProvider(basicCredentialsProvider))
-                .build();;
+                .build();
     }
 
 }
