@@ -40,4 +40,8 @@
   <logger name="com.zaxxer.hikari.HikariConfig" level="DEBUG" appender-ref="console" />
   <logger name="org.hibernate.SQL" level="DEBUG" appender-ref="console" />
   <logger name="org.hibernate.type.descriptor.sql" level="TRACE" appender-ref="console"/>
+  <logger name="org.springframework.data.elasticsearch.core" level="TRACE" appender-ref="console"/>
+  <logger name="org.elasticsearch.client=TRACE" appender-ref="console"/>
+  <logger name="org.apache.http=TRACE" appender-ref="console"/>
+  <logger name="org.springframework.data.elasticsearch.client.WIRE" level="TRACE" appender-ref="console"/>
 </configuration>
