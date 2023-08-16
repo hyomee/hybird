@@ -22,7 +22,7 @@ import javax.net.ssl.SSLContext;
 import java.io.File;
 import java.io.IOException;
 
-// @Configuration
+
 @Getter
 @Setter
 @Slf4j
@@ -55,7 +55,6 @@ public class ElasticSearchConfig {
     private String cadrt;
 
 
-    @Bean
     public ElasticsearchClient getElasticSearchClient()   {
         // Create the low-level client
         RestClient restClient = getRestClient();

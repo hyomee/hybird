@@ -25,10 +25,12 @@ class ElasticIndexComponentTest {
             .indexName("demo")
             .build();
 
-    boolean isProcess = elasticIndexComponent.deleteIndex( elasticIndexVO );
-    log.debug("deleteIndex ==> " + isProcess);
+//    boolean isDeleteIndex = elasticIndexComponent.deleteIndex( elasticIndexVO );
+//    log.debug("deleteIndex ==> " + isDeleteIndex);
 
-     isProcess = elasticIndexComponent.createIndexRequest(elasticIndexVO);
-    log.debug("createIndexRequest ==> " + isProcess);
+    boolean isCreateIndex = elasticIndexComponent.createIndexRequest(elasticIndexVO);
+    log.debug("createIndexRequest ==> " + isCreateIndex);
   }
+
+
 }
