@@ -19,7 +19,7 @@ public class ConvertUtils {
             try {
                 field.setAccessible(true);
                 if (Objects.nonNull(field.get(source))) {
-                    result.put(field.getName() + ".keyword", String.valueOf(field.get(source)));
+                    result.put(field.getName() , String.valueOf(field.get(source)));
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();

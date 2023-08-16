@@ -27,8 +27,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator:3.1.0'
     implementation 'org.springframework.boot:spring-boot-starter-web:3.1.0'
     testImplementation 'org.projectlombok:lombok:1.18.26'
-    testImplementation 'org.projectlombok:lombok:1.18.26'
-    testImplementation 'org.projectlombok:lombok:1.18.26'
 
     /**********************************************
      * db 관련
@@ -50,9 +48,10 @@ dependencies {
     /**********************************************
      * NoSql
      **********************************************/
-    // implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch:3.0.4'
+    implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch:3.0.4'
     // https://mvnrepository.com/artifact/org.springframework.data/spring-data-elasticsearch
-    implementation group: 'org.springframework.data', name: 'spring-data-elasticsearch', version: '5.0.3'
+    //implementation group: 'org.springframework.data', name: 'spring-data-elasticsearch', version: '5.0.3'
+    //implementation 'org.elasticsearch.client:elasticsearch-rest-client:8.8.2'
 
     // implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
@@ -121,6 +120,6 @@ clean.doLast {
     file(querydslDir).deleteDir()
 }
 
-//test {
-//    exclude '**/*'
-//}
+test {
+    exclude '**/*'
+}

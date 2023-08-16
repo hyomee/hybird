@@ -19,7 +19,7 @@ class DemoServiceTest {
   @Autowired
   DemoService demoService;
 
-  @Disabled
+  // @Disabled
   @Test
   void retrieveDemo() {
     List<DemoDTO> demoDTOs = demoService.retrieveDemo();

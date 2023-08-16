@@ -18,7 +18,7 @@ class ElasticIndexComponentTest {
   @Autowired
   ElasticIndexComponent elasticIndexComponent;
 
-  @Disabled
+  // @Disabled
   @Test
   void createIndexRequest()  {
     ElasticIndexVO elasticIndexVO = ElasticIndexVO.builder()

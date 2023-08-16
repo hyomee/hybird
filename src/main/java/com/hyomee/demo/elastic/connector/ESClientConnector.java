@@ -50,6 +50,7 @@ public class ESClientConnector {
 
 
 
+
     public List<DemoDTO> retrieveDemoDTOWithMustQuery(DemoDTO demoDTO) throws IOException {
         List<Query> queries = QueryBuilderUtils.prepareQueryList(demoDTO );
         SearchResponse<DemoDTO> employeeSearchResponse = elasticSearchConfig.getElasticSearchClient().search(req->

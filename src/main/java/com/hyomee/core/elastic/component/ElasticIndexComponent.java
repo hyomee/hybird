@@ -33,6 +33,7 @@ public class ElasticIndexComponent {
     IndexSettings indexSettings = new IndexSettings.Builder()
             .numberOfShards(StringUtils.isEmpty(elasticIndexVO.getShards()) ? "1" : elasticIndexVO.getShards())
             .numberOfReplicas(StringUtils.isEmpty(elasticIndexVO.getReplicas()) ? "1" : elasticIndexVO.getReplicas())
+            //.analysis()
             .refreshInterval(new Time.Builder()
                     .time(StringUtils.isEmpty(elasticIndexVO.getReplicas()) ? "5s" : elasticIndexVO.getRefreshInterval()  + "s")
                     .build())
