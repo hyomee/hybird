@@ -120,6 +120,7 @@ clean.doLast {
     file(querydslDir).deleteDir()
 }
 
-test {
-    exclude '**/*'
-}
+
+//test {
+//    exclude '**/*'
+//}
