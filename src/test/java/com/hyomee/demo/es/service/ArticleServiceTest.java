@@ -1,6 +1,7 @@
 package com.hyomee.demo.es.service;
 
 import com.google.gson.Gson;
+import com.hyomee.core.jpa.utils.PageUtils;
 import com.hyomee.demo.es.doc.Article;
 import com.hyomee.demo.es.dto.ArticleDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +51,7 @@ class ArticleServiceTest {
     String title = "예제";
      ;
     log.debug("articles findByTitleContains : \n" +  gson.toJson(articleService.findByTitleContains(title)));
-    log.debug("articles findByTitleLike : \n" +  gson.toJson(articleService.findByTitleLike(title)));
+    log.debug("articles findByTitleLike : \n" +  gson.toJson(articleService.findByTitleLike(title, PageUtils.getPageable())));
     log.debug("articles findByTitleStartsWith : \n" +  gson.toJson(articleService.findByTitleStartsWith(title)));
     log.debug("articles findByTitleEndsWith: \n" +  gson.toJson(articleService.findByTitleEndsWith(title)));
 

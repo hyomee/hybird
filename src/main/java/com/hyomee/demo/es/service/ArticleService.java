@@ -1,5 +1,7 @@
 package com.hyomee.demo.es.service;
 
+import com.hyomee.core.elastic.dto.PageDTO;
+import com.hyomee.core.elastic.dto.ResponsePageDTO;
 import com.hyomee.core.jpa.utils.PageUtils;
 import com.hyomee.demo.es.doc.Article;
 import com.hyomee.demo.es.dto.ArticleDTO;
@@ -7,14 +9,18 @@ import com.hyomee.demo.es.repository.ArticleMapper;
 import com.hyomee.demo.es.repository.ArticleRespository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Data
-@AllArgsConstructor
+
+@RequiredArgsConstructor
 @Service
 public class ArticleService {
 
@@ -48,19 +54,30 @@ public class ArticleService {
     return ArticleMapper.INSTANCE.toArticleDTO(articleOptional.get());
   }
 
-  public List<ArticleDTO> findByTitleContains(String title) {
+  public ResponsePageDTO findByTitleContains(String title) {
 
-    Iterable<Article> articles = articleRespository.findByTitleContains(title, PageUtils.getPageable());
+    Page<Article> articles = articleRespository.findByTitleContains(title,
+            PageUtils.getPageable());
+
+    ResponsePageDTO responsePageDTO = ResponsePageDTO.setResponsePageDTO(articles);
+
+    // List<ArticleDTO> articleList = ArticleMapper.INSTANCE.toArticleList(articles);
+    return responsePageDTO;
+  }
+
+  public ResponsePageDTO findByTitleLike(String title, Pageable pageable) {
+
+    Page<Article> articles = articleRespository.findByTitleLike(title, pageable);
+
+    ResponsePageDTO responsePageDTO = ResponsePageDTO.setResponsePageDTO(articles);
+
+    return responsePageDTO;
+  }
+
+  public List<ArticleDTO> findByTitleStartsWith(String title) {
+    Iterable<Article>  articles = articleRespository.findByTitleStartsWith(title);
     List<ArticleDTO> articleList = ArticleMapper.INSTANCE.toArticleList(articles);
     return articleList;
-  }
-
-  public List<ArticleDTO> findByTitleLike(String title) {
-    return ArticleMapper.INSTANCE.toArticleList(articleRespository.findByTitleLike(title));
-  }
-
-  public Iterable<Article> findByTitleStartsWith(String title) {
-    return articleRespository.findByTitleStartsWith(title);
   }
 
   public List<ArticleDTO> findByTitleEndsWith(String title) {

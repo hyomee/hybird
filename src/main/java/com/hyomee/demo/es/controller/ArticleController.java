@@ -1,11 +1,16 @@
 package com.hyomee.demo.es.controller;
 
+import com.hyomee.core.elastic.dto.ResponsePageDTO;
 import com.hyomee.core.utils.ResponseUtils;
 import com.hyomee.demo.es.doc.Article;
 import com.hyomee.demo.es.dto.ArticleDTO;
 import com.hyomee.demo.es.repository.ArticleRespository;
 import com.hyomee.demo.es.service.ArticleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,21 +51,24 @@ public class ArticleController {
 
     @GetMapping("v1/title/contains/{title}")
     public ResponseEntity findByTitleContains(@PathVariable String title) {
-        return ResponseUtils.completed(articleService.findByTitleContains(title));
+        ResponsePageDTO responsePageDTO = articleService.findByTitleContains(title);
+        return ResponseUtils.completed(responsePageDTO);
     }
 
     @GetMapping("v1/title/like/{title}")
-    public ResponseEntity findByTitleLike(@PathVariable String title) {
-        return ResponseUtils.completed(articleService.findByTitleLike(title));
+    public ResponseEntity findByTitleLike(@PathVariable String title,
+                                          Pageable pageable) {
+
+        return ResponseUtils.completed(articleService.findByTitleLike(title, pageable));
     }
 
     @GetMapping("v1/title/startswith/{title}")
-    public ResponseEntity findByTitleStartsWith(String title) {
+    public ResponseEntity findByTitleStartsWith(@PathVariable String title) {
         return ResponseUtils.completed(articleService.findByTitleStartsWith(title));
     }
 
     @GetMapping("v1/title/endswith/{title}")
-    public ResponseEntity findByTitleEndsWith(String title) {
+    public ResponseEntity findByTitleEndsWith(@PathVariable String title) {
         return ResponseUtils.completed(articleService.findByTitleEndsWith(title));
     }
 

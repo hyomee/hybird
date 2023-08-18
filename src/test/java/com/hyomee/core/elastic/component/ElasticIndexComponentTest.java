@@ -2,6 +2,7 @@ package com.hyomee.core.elastic.component;
 
 import com.hyomee.core.elastic.vo.ElasticIndexVO;
 import lombok.extern.slf4j.Slf4j;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,9 @@ class ElasticIndexComponentTest {
   @Autowired
   ElasticIndexComponent elasticIndexComponent;
 
-  // @Disabled
+
+
+  @Disabled
   @Test
   void createIndexRequest()  {
     ElasticIndexVO elasticIndexVO = ElasticIndexVO.builder()

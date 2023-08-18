@@ -75,7 +75,7 @@ public class BizExceptionAdvice {
     } catch (NoSuchMessageException nex) {
 
       if (ex.getArgs() != null && ex.getArgs().length > 0) {
-        errMsg = MessageFormat.format(ex.getCode(), ex.getArgs());
+        errMsg = MessageFormat.format(ex.getCode(), (Object) ex.getArgs());
       } else {
         errMsg = ex.getCode();
       }

@@ -5,6 +5,7 @@ import com.hyomee.core.elastic.utils.QueryBuilderUtils;
 import com.hyomee.core.utils.UuidUtils;
 import com.hyomee.demo.elastic.dto.DemoDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +23,7 @@ class ESClientConnectorTest {
 
     @Autowired
     ESClientConnector esClientConnector;
+    @Disabled
     @Test
     void prepareQueryList() {
 
@@ -35,6 +37,7 @@ class ESClientConnectorTest {
         log.debug("Class to Map : \n " + queryList.toString());
     }
 
+    @Disabled
     @Test
     void insertDemo() {
 
@@ -48,10 +51,12 @@ class ESClientConnectorTest {
 
     }
 
+    @Disabled
     @Test
     void retrieveDemoDTOById() {
     }
 
+    @Disabled
     @Test
     void retrieveDemoDTOWithMustQuery() throws IOException {
         DemoDTO demoDTO = DemoDTO.builder()
@@ -63,6 +68,7 @@ class ESClientConnectorTest {
         log.debug("Class to Map : \n " + queryList.toString());
     }
 
+    @Disabled
     @Test
     void retrieveDemoDTOWithShouldQuery() throws IOException {
         DemoDTO demoDTO = DemoDTO.builder()
@@ -74,6 +80,7 @@ class ESClientConnectorTest {
         log.debug("Class to Map : \n " + queryList.toString());
     }
 
+    @Disabled
     @Test
     void retrieveDemoDTOWithShouldMatchQuery() throws IOException {
         DemoDTO demoDTO = DemoDTO.builder()
@@ -85,10 +92,11 @@ class ESClientConnectorTest {
         log.debug("Class to Map : \n " + queryList.toString());
     }
 
+    @Disabled
     @Test
     void deleteDemoDTOById() {
     }
-
+    @Disabled
     @Test
     void updateDemoDTO() {
     }

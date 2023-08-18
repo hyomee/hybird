@@ -12,5 +12,5 @@ user:
 pageing:
   page: 0
   size: 10
-  direction: asc
-  properties: A,B
+  direction:
+  properties:
