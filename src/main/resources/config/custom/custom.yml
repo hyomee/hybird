@@ -5,3 +5,12 @@ user:
   error:
     fillInStackTrace: false
     printStackTrace: true
+
+##########################################################
+# Page 정의
+##########################################################
+pageing:
+  page: 0
+  size: 10
+  direction: asc
+  properties: A,B

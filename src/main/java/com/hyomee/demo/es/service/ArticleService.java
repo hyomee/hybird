@@ -1,11 +1,13 @@
 package com.hyomee.demo.es.service;
 
+import com.hyomee.core.jpa.utils.PageUtils;
 import com.hyomee.demo.es.doc.Article;
 import com.hyomee.demo.es.dto.ArticleDTO;
 import com.hyomee.demo.es.repository.ArticleMapper;
 import com.hyomee.demo.es.repository.ArticleRespository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,13 +49,14 @@ public class ArticleService {
   }
 
   public List<ArticleDTO> findByTitleContains(String title) {
-    Iterable<Article> articles = articleRespository.findByTitleContains(title);
+
+    Iterable<Article> articles = articleRespository.findByTitleContains(title, PageUtils.getPageable());
     List<ArticleDTO> articleList = ArticleMapper.INSTANCE.toArticleList(articles);
     return articleList;
   }
 
   public List<ArticleDTO> findByTitleLike(String title) {
-    return articleRespository.findByTitleLike(title);
+    return ArticleMapper.INSTANCE.toArticleList(articleRespository.findByTitleLike(title));
   }
 
   public Iterable<Article> findByTitleStartsWith(String title) {
@@ -61,7 +64,7 @@ public class ArticleService {
   }
 
   public List<ArticleDTO> findByTitleEndsWith(String title) {
-    return articleRespository.findByTitleEndsWith(title);
+    return ArticleMapper.INSTANCE.toArticleList(articleRespository.findByTitleEndsWith(title));
   }
 }
 

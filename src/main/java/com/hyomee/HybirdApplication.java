@@ -10,9 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableElasticsearchRepositories(basePackages = "com.hyomee.demo.es.*")
 @ComponentScan(basePackages = {"com.hyomee.*"})
 @SpringBootApplication
-public class HybirdApplication {
-
-  public static void main(String[] args) {
+public class HybirdApplication {  public static void main(String[] args) {
     SpringApplication.run(HybirdApplication.class, args);
   }
 
