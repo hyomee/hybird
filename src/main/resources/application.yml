@@ -8,9 +8,7 @@ spring:
       - classpath:/config/custom/custom.yml
       - classpath:/config/custom/el.yml
   messages:
-    basename:
-      - message/message
-      - message/exception
+    basename: message/message,  essage/exception
     encoding: UTF-8
   h2:
     console:
