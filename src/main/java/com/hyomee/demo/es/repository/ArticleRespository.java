@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 public interface ArticleRespository  extends ElasticsearchRepository<Article, String> {
-    List<ArticleDTO> findByTitle(String title);
+    // List<ArticleDTO> findByTitle(String title);
 
     Page<Article> findByTitleContains(String title, Pageable pageable);
 

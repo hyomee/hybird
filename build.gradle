@@ -123,6 +123,6 @@ clean.doLast {
 }
 
 
-//test {
-//    exclude '**/*'
-//}
+test {
+    exclude '**/*'
+}
