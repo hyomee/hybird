@@ -19,16 +19,26 @@
 
 
 # 사무실 8.7.1
+#es:
+#  host:  192.168.210.52
+#  port: 9200
+#  username: elastic
+#  password: GlFAJO2I=**kk8hjP02g
+#  schemeName: https
+#  ssl: fingerprint        # pwd, fingerprint, ca
+#  fingerprint: 3b4a60ca061ab6a2c9d6289e768bd5a16de824a8126ca51bf8d8454756e8081b
+#  cadrt: C:\PRJ\hybird\elk
+
+# 개인
 es:
-  host:  192.168.210.52
+  host:  172.31.25.224
   port: 9200
   username: elastic
-  password: GlFAJO2I=**kk8hjP02g
+  password: =5k2f8LXRrA69xLk_LgU
   schemeName: https
   ssl: fingerprint        # pwd, fingerprint, ca
-  fingerprint: 3b4a60ca061ab6a2c9d6289e768bd5a16de824a8126ca51bf8d8454756e8081b
-  cadrt: C:\PRJ\hybird\elk
-
+  fingerprint: 1f27354472efc0b8c064883a7b26e23274f8479e99dfcf358625527a59c41b94
+  cadrt: D:\PRJ\hybird\elk
 
 # 홈 8.9.0
 #es:

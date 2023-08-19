@@ -7,6 +7,7 @@ import com.hyomee.demo.es.repository.ArticleMapper;
 import com.hyomee.demo.es.repository.ArticleRespository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -50,8 +51,8 @@ public class ArticleService {
 
   public List<ArticleDTO> findByTitleContains(String title) {
 
-    Iterable<Article> articles = articleRespository.findByTitleContains(title, PageUtils.getPageable());
-    List<ArticleDTO> articleList = ArticleMapper.INSTANCE.toArticleList(articles);
+    Page<Article> articles = articleRespository.findByTitleContains(title, PageUtils.getPageable());
+    List<ArticleDTO> articleList = ArticleMapper.INSTANCE.toArticleList(articles.getContent());
     return articleList;
   }
 

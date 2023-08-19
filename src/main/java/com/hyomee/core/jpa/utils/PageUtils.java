@@ -5,23 +5,44 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
 import java.util.Objects;
 import java.util.Set;
 
+@Component
 public class PageUtils {
 
-    @Value("${pageing.page:0}")
+
     private static int page;
-    @Value("${pageing.size:10}")
+
     private static int size;
 
-    @Value("${pageing.direction:asc}")
     private static String direction ;
 
-    @Value("${pageing.properties")
+
     private static String properties;
+    @Value("${pageing.page:0}")
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    @Value("${pageing.size:10}")
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    @Value("${pageing.direction:asc}")
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+    @Value("${pageing.properties")
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+
 
 
     public static <T> Pageable getPageable(T source) {
@@ -29,8 +50,8 @@ public class PageUtils {
 
         int page = PageUtils.page;
         int size = PageUtils.size;
-        Sort.Direction direction = Sort.Direction.ASC;
-        String[] properties = null;
+        String direction = PageUtils.direction;
+        String[] properties = new String[0];
 
         for (Field field : fields) {
             try {
@@ -45,12 +66,12 @@ public class PageUtils {
         }
 
 
-        return  PageRequest.of(page, size, direction, properties);
+        return  PageRequest.of(page, size);
     }
 
     public static <T> Pageable getPageable() {
 
-        return  PageRequest.of(page, size, Sort.Direction.valueOf(direction), properties);
+        return  PageRequest.of(page, size );
     }
 
     private static <T> int getPageValue(Field field, T source ) throws IllegalAccessException {
@@ -71,13 +92,13 @@ public class PageUtils {
         return PageUtils.size;
     }
 
-    private static <T> Sort.Direction getDirectionValue(Field field, T source ) throws IllegalAccessException {
+    private static <T> String getDirectionValue(Field field, T source ) throws IllegalAccessException {
         if ("direction".equals(field.getName())) {
             if (Objects.nonNull(field.get(source))) {
-                return Sort.Direction.valueOf((String) field.get(source));
+                return (String) field.get(source);
             }
         }
-        return Sort.Direction.ASC;
+        return "ASC";
     }
 
     private static <T> String[]  getProperties(Field field, T source ) throws IllegalAccessException {
