@@ -16,4 +16,4 @@ pageing:
   properties: A,B
 
 mockdir: D:\PRJ\hybird\mock\
-tourlistDir: D:\STUDY\SPRINGBOOT\hybird\data\
+tourlistDir: D:\STUDY\SPRINGBOOT\hybird\initData\
