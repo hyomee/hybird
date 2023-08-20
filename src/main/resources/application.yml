@@ -17,7 +17,7 @@ spring:
       settings.trace: false             # 추적 활성화
       settings.web-allow-others: false  # CORS로 다른 사용자 접근 허용 여부
   datasource:
-    url: jdbc:h2:file:./data/demodb     # 파일 저장소
+    url: jdbc:h2:file:./db/demodb     # 파일 저장소
     username: sa
     password: hhs1234
     driverClassName: org.h2.Driver
