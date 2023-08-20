@@ -59,6 +59,10 @@ public class ArticleController {
     public ResponseEntity findByTitleLike(@PathVariable String title,
                                           Pageable pageable) {
 
+        List<Sort.Order> sorts = pageable.getSort().toList();
+//        for (Sort.Order sort : sorts ) {
+//            sort.getProperty() + ".koworld"
+//        }
         return ResponseUtils.completed(articleService.findByTitleLike(title, pageable));
     }
 

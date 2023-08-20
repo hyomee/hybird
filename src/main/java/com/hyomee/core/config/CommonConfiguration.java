@@ -10,6 +10,11 @@ public class CommonConfiguration {
 
     @Bean
     public Gson gson() {
-        return new GsonBuilder().disableHtmlEscaping().serializeNulls().create();
+
+        return new GsonBuilder()
+                .disableHtmlEscaping()
+                .serializeNulls()
+                .setLenient()
+                .create();
     }
 }

@@ -1,6 +1,7 @@
 package com.hyomee.core.jpa.utils;
 
 import com.querydsl.core.util.ReflectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,16 +17,13 @@ public class PageUtils {
 
 
     private static int page;
-
     private static int size;
-
     private static String direction ;
-
-
     private static String properties;
+
     @Value("${pageing.page:0}")
-    public void setPage(int page) {
-        this.page = page;
+    public void setPage(int value) {
+        this.page = value;
     }
 
     @Value("${pageing.size:10}")
@@ -33,17 +31,15 @@ public class PageUtils {
         this.size = size;
     }
 
-    @Value("${pageing.direction:asc}")
-    public void setDirection(String direction) {
+    @Value("${pageing.direction:ASC}")
+    public  void setDirection(String direction) {
         this.direction = direction;
     }
-    @Value("${pageing.properties")
-    public void setProperties(String properties) {
+
+    @Value("${pageing.properties:''}")
+    public  void setProperties(String properties) {
         this.properties = properties;
     }
-
-
-
 
     public static <T> Pageable getPageable(T source) {
         Set<Field> fields =  ReflectionUtils.getFields(source.getClass());
@@ -66,10 +62,29 @@ public class PageUtils {
         }
 
 
-        return  PageRequest.of(page, size);
+        return  getPageable(page, size, direction, properties);
+    }
+
+    public static <T> Pageable getPageable(int page, int size, String direction , String... properties) {
+
+        if (properties.length > 0 && StringUtils.isNotEmpty(direction)) {
+            return  PageRequest.of(page, size, Sort.Direction.valueOf(direction), properties);
+        }
+
+        return  PageRequest.of(page, size );
+
+    }
+
+    public static <T> Pageable getPageable(int page, int size) {
+
+        return  PageRequest.of( page, size );
     }
 
     public static <T> Pageable getPageable() {
+
+        if (StringUtils.isNotEmpty(properties) && StringUtils.isNotEmpty(direction)) {
+            return  PageRequest.of(page, size, Sort.Direction.valueOf(direction), properties);
+        }
 
         return  PageRequest.of(page, size );
     }
