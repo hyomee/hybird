@@ -23,4 +23,10 @@ public class InitLoadingController {
     tourlistLoagingService.loadingTourlist(filename);
     return ResponseUtils.completed(CommonConstant.COMMON_TRUE);
   }
+
+  @GetMapping("/tourlist/es/{filename}")
+  public ResponseEntity loadingEcTourlist(@PathVariable String filename) {
+    tourlistLoagingService.loadingEcTourlist(filename);
+    return ResponseUtils.completed(CommonConstant.COMMON_TRUE);
+  }
 }

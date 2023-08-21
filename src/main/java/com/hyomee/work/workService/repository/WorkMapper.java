@@ -1,5 +1,6 @@
 package com.hyomee.work.workService.repository;
 
+import com.hyomee.work.workEcService.dto.TourListEcDTO;
 import com.hyomee.work.workService.dto.TourlistDTO;
 import com.hyomee.work.workService.entity.TourlistEntity;
 import org.mapstruct.Mapper;
@@ -16,4 +17,5 @@ public interface WorkMapper {
 
   TourlistEntity toTourlistEntity(TourlistDTO tourlistDTO);
   List<TourlistEntity> toTourlistEntitys(List<TourlistDTO> tourlistDTO);
+
 }

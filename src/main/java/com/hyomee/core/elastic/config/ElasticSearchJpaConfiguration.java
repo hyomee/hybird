@@ -40,6 +40,7 @@ public class ElasticSearchJpaConfiguration extends ElasticsearchConfiguration {
             .connectedTo(host + ":" + port)
             .usingSsl(sslContext)
             .withBasicAuth(username, password)
+            // .withSocketTimeout(15000)
             .build();
 
 

@@ -3,6 +3,10 @@ package com.hyomee.work.loading.service;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hyomee.core.customException.BizException;
+import com.hyomee.work.workEcService.doc.TourListDoc;
+import com.hyomee.work.workEcService.dto.TourListEcDTO;
+import com.hyomee.work.workEcService.mapper.EcMapper;
+import com.hyomee.work.workEcService.repository.TourListDocRepository;
 import com.hyomee.work.workService.dto.TourlistDTO;
 import com.hyomee.work.workService.entity.TourlistEntity;
 import com.hyomee.work.workService.repository.TourlistRepository;
@@ -25,15 +29,37 @@ public class TourlistLoagingService {
   private String tourlistDir;
 
   private final TourlistRepository tourlistRepository;
+  private final TourListDocRepository tourListDOCRepository;
   private final Gson gson;
 
   public void loadingTourlist(@NonNull String filename) {
 
     Reader reader = fileLoad(filename);
+
     List<TourlistDTO> tourlistDTOs =  gson.fromJson(reader,
             new TypeToken<List<TourlistDTO>>(){}.getType() );
+
     List<TourlistEntity> tourlistEntities = WorkMapper.INSTANCE.toTourlistEntitys(tourlistDTOs);
+
     tourlistRepository.saveAll(tourlistEntities);
+
+  }
+
+  public void loadingEcTourlist(@NonNull String filename) {
+
+    Reader reader = fileLoad(filename);
+
+    List<TourListEcDTO> tourlistEcDTOs =  gson.fromJson(reader,
+            new TypeToken<List<TourListEcDTO>>(){}.getType() );
+
+    List<TourListDoc> tourListDocs = EcMapper.INSTANCE.toTourListDOCs(tourlistEcDTOs);
+    int i = 0;
+    for (TourListDoc tourListDoc : tourListDocs) {
+      tourListDOCRepository.save (tourListDoc);
+      i += 1;
+      if (i > 10 ) break;
+    }
+
 
   }
 
