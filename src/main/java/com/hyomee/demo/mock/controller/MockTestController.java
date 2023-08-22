@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 
 @RestController
 @RequestMapping("/mock/")
 public class MockTestController {
 
     @GetMapping("/getMockData")
-    public <T> ResponseEntity getMockData() throws FileNotFoundException {
+    public <T> ResponseEntity getMockData() throws FileNotFoundException, UnsupportedEncodingException {
        T responseData =  JsonFileReadUtils.jsonLoading("demo\\getMockData", MockDemoDTO.class);
        return ResponseUtils.completed(responseData);
     }

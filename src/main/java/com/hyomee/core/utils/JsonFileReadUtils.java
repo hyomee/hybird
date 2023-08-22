@@ -7,10 +7,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
 
 @RequiredArgsConstructor
 @Component
@@ -23,9 +20,12 @@ public class JsonFileReadUtils {
        this.mockDir = mockDir;
     }
 
-    public static <T> T jsonLoading(String filename , Class<?> className) throws FileNotFoundException {
+    @SuppressWarnings("unchecked")
+    public static <T> T jsonLoading(String filename , Class<?> className) throws FileNotFoundException, UnsupportedEncodingException {
+        String filepath = mockDir + "\\" + filename + ".json";
+        Reader reader = new FileReader(filepath);
 
-        Reader reader = new FileReader(mockDir + "\\" + filename + ".json");
+//        BufferedReader reader01 = new BufferedReader(new InputStreamReader(new FileInputStream(filepath),"UTF-8"));
 
         return (T) new Gson().fromJson(reader, className);
 

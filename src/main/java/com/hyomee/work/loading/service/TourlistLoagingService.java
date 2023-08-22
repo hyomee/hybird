@@ -16,9 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -64,10 +62,13 @@ public class TourlistLoagingService {
   }
 
   private Reader fileLoad(String filename) {
-    Reader reader = null;
+    // Reader reader = null;
+    BufferedReader reader = null;
     try {
-      reader = new FileReader( this.tourlistDir + filename + ".json");
-    } catch (FileNotFoundException e) {
+      String filepath = this.tourlistDir + filename + ".json";
+      reader = new BufferedReader(new InputStreamReader(new FileInputStream(filepath),"UTF-8"));
+      // reader = new FileReader( this.tourlistDir + filename + ".json");
+    } catch (FileNotFoundException | UnsupportedEncodingException e) {
       throw new BizException(filename + " 파일이 없습니다.");
     }
     return reader;
