@@ -10,6 +10,8 @@ spring:
   messages:
     basename: message/message,  essage/exception
     encoding: UTF-8
+  main:
+    allow-bean-definition-overriding: true
   h2:
     console:
       enabled: true                     # 콘솔 사용

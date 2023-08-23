@@ -11,19 +11,17 @@ public class ResponseUtils {
 
   public static ResponseEntity<Object> completed(Object obj) {
 
+//    ResponseDTO responseDTO = ResponseDTO.builder()
+//            .code(String.valueOf(HttpStatus.OK.value()))
+//            .message(CommonConstant.COMMON_EMPTY)
+//            .error(CommonConstant.COMMON_EMPTY)
+//            .status(HttpStatus.OK.value())
+//            .path(RequestUtils.getHttpServletRequest().getRequestURL().toString())
+//            .timestamp(String.valueOf(new Timestamp(System.currentTimeMillis())))
+//            .data(obj)
+//            .build();
 
-
-    ResponseDTO responseDTO = ResponseDTO.builder()
-            .code(String.valueOf(HttpStatus.OK.value()))
-            .message(CommonConstant.COMMON_EMPTY)
-            .error(CommonConstant.COMMON_EMPTY)
-            .status(HttpStatus.OK.value())
-            .path(RequestUtils.getHttpServletRequest().getRequestURL().toString())
-            .timestamp(String.valueOf(new Timestamp(System.currentTimeMillis())))
-            .data(obj)
-            .build();
-
-    return ResponseEntity.status(HttpStatus.OK.value()).body(responseDTO);//
+    return ResponseEntity.status(HttpStatus.OK.value()).body(obj);//
 
   }
 

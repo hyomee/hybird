@@ -9,8 +9,10 @@ import com.hyomee.work.workEcService.mapper.EcMapper;
 import com.hyomee.work.workEcService.repository.TourListDocRepository;
 import com.hyomee.work.workService.dto.TourlistDTO;
 import com.hyomee.work.workService.entity.TourlistEntity;
+import com.hyomee.work.workService.repository.PlannerTourlistRepository;
 import com.hyomee.work.workService.repository.TourlistRepository;
 import com.hyomee.work.workService.repository.WorkMapper;
+import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +30,7 @@ public class TourlistLoagingService {
 
   private final TourlistRepository tourlistRepository;
   private final TourListDocRepository tourListDOCRepository;
+
   private final Gson gson;
 
   public void loadingTourlist(@NonNull String filename) {
