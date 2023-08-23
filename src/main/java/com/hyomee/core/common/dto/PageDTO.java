@@ -1,4 +1,4 @@
-package com.hyomee.core.elastic.dto;
+package com.hyomee.core.common.dto;
 
 import lombok.Builder;
 import lombok.Data;

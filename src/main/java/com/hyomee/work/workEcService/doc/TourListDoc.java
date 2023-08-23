@@ -22,6 +22,7 @@ public class TourListDoc {
 
     @Field(type = FieldType.Text)
     private String contentid;
+
     @Field(type = FieldType.Text)
     private String addr1;
     private String addr2;

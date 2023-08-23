@@ -36,14 +36,16 @@ spring:
   jpa:
 #    database-platform: org.hibernate.dialect.H2Dialect  # 접속할 database의 SQL Dialect 설정, JPA를 활용하여 동적 쿼리 생성시, database에 맞는 방언 sql을 생성
     open-in-view: false
+    show-sql: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
-        show-sql: true                  # 모든 SQL문을 콘솔로 출력
-        format_sql: true                # 모든 SQL문을 콘솔로 출력해 준다.
+        show-sql: true                  # Hibernate이 DB에 날리는 모든 쿼리(DDL, DML) 표출
+        format_sql: true                # 쿼리 들여쓰기 등의 포맷에 맞춰 표출
         hbm2ddl.auto: update            # 앱 시작시 @Entity로 정의한 테이블의 create 문 실행
         highlight_sql: true
         use_sql_comments: true          # 디버깅이 용이하도록 SQL문 이외에 추가적인 정보를 출력
+
 #        implicit_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
 #        physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
 
@@ -54,9 +56,16 @@ mybatis:
     map-underscore-to-camel-case: true
 
 logging:
+  config: classpath:logback-spring.xml
   level:
     root: info
-  config: classpath:logback-spring.xml
+#    org:
+#      hibernate:
+#        SQL: debug
+#        type:
+#          descriptor:
+#            sql: trace
+
 
 
 

@@ -1,5 +1,6 @@
 package com.hyomee.work.workService.service.tourlist;
 
+import com.hyomee.work.workService.dto.TourlistConditionReqDTO;
 import com.hyomee.work.workService.dto.TourlistDTO;
 import com.hyomee.work.workService.repository.TourlistRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +13,7 @@ import java.util.List;
 public class TourListService {
     private final TourlistRepository tourlistRepository;
 
-    public List<TourlistDTO> getTourlistByTitle(String title) {
-        return tourlistRepository.findTourlist(title);
+    public List<TourlistDTO> findTourlist(TourlistConditionReqDTO tourlistConditionReqDTO) {
+        return tourlistRepository.findTourlist(tourlistConditionReqDTO);
     }
 }

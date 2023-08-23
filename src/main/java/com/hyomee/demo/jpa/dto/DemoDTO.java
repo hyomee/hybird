@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class DemoDTO   {
   private int id;
-  private String name;
+  private String title;
+  private String content;
 }

@@ -15,7 +15,7 @@ public class DemoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
-
-    private String name;
+    private String title;
+    private String content;
 }
 

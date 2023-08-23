@@ -1,21 +1,17 @@
 package com.hyomee.demo.es.controller;
 
-import com.hyomee.core.elastic.dto.ResponsePageDTO;
+import com.hyomee.core.common.dto.ResponsePageDTO;
 import com.hyomee.core.utils.ResponseUtils;
 import com.hyomee.demo.es.doc.Article;
 import com.hyomee.demo.es.dto.ArticleDTO;
-import com.hyomee.demo.es.repository.ArticleRespository;
 import com.hyomee.demo.es.service.ArticleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController

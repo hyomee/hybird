@@ -1,18 +1,13 @@
 package com.hyomee.demo.es.service;
 
-import com.hyomee.core.elastic.dto.PageDTO;
-import com.hyomee.core.elastic.dto.ResponsePageDTO;
+import com.hyomee.core.common.dto.ResponsePageDTO;
 import com.hyomee.core.jpa.utils.PageUtils;
 import com.hyomee.demo.es.doc.Article;
 import com.hyomee.demo.es.dto.ArticleDTO;
 import com.hyomee.demo.es.repository.ArticleMapper;
 import com.hyomee.demo.es.repository.ArticleRespository;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
