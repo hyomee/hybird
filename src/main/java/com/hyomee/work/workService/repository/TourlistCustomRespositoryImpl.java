@@ -77,20 +77,20 @@ public class TourlistCustomRespositoryImpl implements TourlistCustomRespository 
 
     private FactoryExpressionBase<TourlistDTO> makeProjectiosBean() {
         return Projections.bean(TourlistDTO.class,
-                qTourlistEntity.contentid.as("contentid"),
-                qTourlistEntity.title.as("title"),
-                qTourlistEntity.zipcode.as("zipcode"),
-                qTourlistEntity.addr.as("addr"),
-                qTourlistEntity.addr2.as("addr2"),
-                qTourlistEntity.tel.as("tel"),
-                qTourlistEntity.areacode.as("areacode"),
-                qTourlistEntity.sigungucode.as("sigungucode"),
-                qTourlistEntity.firstimage.as("firstimage"),
-                qTourlistEntity.firstimage.as("firstimage"),
-                qTourlistEntity.firstimage2.as("firstimage2"),
-                qTourlistEntity.overview.as("overview"),
-                qTourlistEntity.mapx.as("mapx"),
-                qTourlistEntity.mapy.as("mapy"));
+                qTourlistEntity.contentid ,
+                qTourlistEntity.title ,
+                qTourlistEntity.zipcode ,
+                qTourlistEntity.addr ,
+                qTourlistEntity.addr2 ,
+                qTourlistEntity.tel ,
+                qTourlistEntity.areacode ,
+                qTourlistEntity.sigungucode ,
+                qTourlistEntity.firstimage ,
+                qTourlistEntity.firstimage ,
+                qTourlistEntity.firstimage2 ,
+                qTourlistEntity.overview ,
+                qTourlistEntity.mapx ,
+                qTourlistEntity.mapy );
     }
 
     private ConstructorExpression<TourlistDTO> makeProjectiosConstructor() {

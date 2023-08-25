@@ -1,4 +1,4 @@
-package com.hyomee.work.scheduled;
+package com.hyomee.demo.scheduled;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
