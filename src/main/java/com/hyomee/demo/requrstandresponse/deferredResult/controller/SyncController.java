@@ -40,13 +40,8 @@ public class SyncController {
         log.debug("1. 요청이 들어 왔습니다.");
 
         AtomicReference<DeferredResult<ResponseEntity<?>>> deferredResult = new AtomicReference<>(new DeferredResult<>(waitTime));
-        deferredResult.get().onTimeout(new Runnable() {
-            @Override
-            public void run() {
-                deferredResult.get().setErrorResult(
-                        ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT).body("5 .... 시간 초과 입니다."));
-            }
-        });
+        deferredResult.get().onTimeout(() -> deferredResult.get().setErrorResult(
+                ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT).body("5 .... 시간 초과 입니다.")));
 
         Map<String, String> rnMap = new HashMap<>();
         ForkJoinPool.commonPool().submit(() -> {

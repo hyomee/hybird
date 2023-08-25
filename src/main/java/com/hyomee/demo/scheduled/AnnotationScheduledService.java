@@ -12,14 +12,14 @@ import java.time.format.DateTimeFormatter;
 @Slf4j
 public class AnnotationScheduledService {
 
-  @Scheduled(initialDelay = 10000, fixedDelay = 10000 )
+ // @Scheduled(initialDelay = 10000, fixedDelay = 10000 )
   public void scheduledJob() {
     log.debug("10 초 이후 job 다시 실행 "
             + Thread.currentThread().getName() + " : "
             + LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-dd'T'HH:mm:ss")));
   }
 
-  @Scheduled(cron = "0/15 * * * * *" )
+ // @Scheduled(cron = "0/15 * * * * *" )
   public void scheduledJobCron() {
     log.debug("cron 15초 이후 실행.. "
             + Thread.currentThread().getName() + " : "
