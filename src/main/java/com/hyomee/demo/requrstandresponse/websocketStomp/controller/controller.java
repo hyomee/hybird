@@ -23,6 +23,10 @@ public class controller {
 
   private final SimpMessagingTemplate template;
 
+  // @MessageMapping : WebSocket을 사용할 때,
+  //        클라이언트로부터 메시지를 받았을 때 어떤 메서드를 실행할지 결정하는 역할
+  // @SendTo : 메시지를 보낼 대상을 지정.
+  //        대상은 토픽(topic)이나 큐(queue)의 형태로 지정할 수 있습니다.
   @MessageMapping("/scheduledmsg")
   @SendTo("/topic/message")
   public GreetingMessag connect(HelloMessage message) throws Exception {
@@ -31,7 +35,6 @@ public class controller {
             .content("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!").build();
 
   }
-
 
 
   @Scheduled(cron = "0/15 * * * * *" )

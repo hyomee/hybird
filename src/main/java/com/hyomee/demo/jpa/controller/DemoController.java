@@ -5,6 +5,7 @@ import com.hyomee.demo.jpa.dto.DemoDTO;
 import com.hyomee.demo.jpa.service.DemoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,5 +33,18 @@ public class DemoController {
   @PostMapping(value = "")
   public DemoDTO saveDemo(@RequestBody DemoDTO demoDTO) {
     return demoService.saveDemo(demoDTO);
+  }
+
+  @GetMapping(value = "")
+  public ResponseEntity retrieveDemo(DemoDTO demoDTO) {
+    List<DemoDTO> demoDTOs = demoService.retrieveDemo();
+    return ResponseUtils.completed(demoDTOs);
+  }
+
+  @GetMapping("${name00}/${page}/${size}")
+  public ResponseEntity retrieveDemoPage(@PathVariable String name00,
+                                         Pageable pageable) {
+    List<DemoDTO> demoDTOs = demoService.retrieveDemo(name00, pageable);
+    return ResponseUtils.completed(demoDTOs);
   }
 }
