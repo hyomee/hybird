@@ -13,4 +13,6 @@ public class DemoDTO   {
   private int id;
   private String title;
   private String content;
+
+  private String name;
 }

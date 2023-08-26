@@ -35,16 +35,12 @@ public class DemoController {
     return demoService.saveDemo(demoDTO);
   }
 
-  @GetMapping(value = "")
-  public ResponseEntity retrieveDemo(DemoDTO demoDTO) {
-    List<DemoDTO> demoDTOs = demoService.retrieveDemo();
-    return ResponseUtils.completed(demoDTOs);
-  }
 
-  @GetMapping("${name00}/${page}/${size}")
-  public ResponseEntity retrieveDemoPage(@PathVariable String name00,
-                                         Pageable pageable) {
-    List<DemoDTO> demoDTOs = demoService.retrieveDemo(name00, pageable);
-    return ResponseUtils.completed(demoDTOs);
-  }
+
+//  @GetMapping("{name}")
+//  public ResponseEntity retrieveDemoPage(@PathVariable String name,
+//                                         Pageable pageable) {
+//    List<DemoDTO> demoDTOs = demoService.retrieveDemo(name, pageable);
+//    return ResponseUtils.completed(demoDTOs);
+//  }
 }

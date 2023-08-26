@@ -30,15 +30,15 @@
 #  cadrt: C:\PRJ\hybird\elk
 
 # 개인
-#es:
-#  host:  172.31.25.224
-#  port: 9200
-#  username: elastic
-#  password: =5k2f8LXRrA69xLk_LgU
-#  schemeName: https
-#  ssl: fingerprint        # pwd, fingerprint, ca
-#  fingerprint: 1f27354472efc0b8c064883a7b26e23274f8479e99dfcf358625527a59c41b94
-#  cadrt: D:\PRJ\hybird\elk
+es:
+  host:  172.31.25.224
+  port: 9200
+  username: elastic
+  password: =5k2f8LXRrA69xLk_LgU
+  schemeName: https
+  ssl: fingerprint        # pwd, fingerprint, ca
+  fingerprint: 1f27354472efc0b8c064883a7b26e23274f8479e99dfcf358625527a59c41b94
+  cadrt: D:\PRJ\hybird\elk
 
 # 홈 8.9.0
 #es:
@@ -63,15 +63,15 @@
 #  cadrt: D:\STUDY\SPRINGBOOT\hybird\elk\http_ca.crt
 
 # 홈 8.7.1
-es:
-  host: 172.19.164.132
-  port: 9200
-  username: elastic
-  password: 1n=eBasM2jGx1EZF07DY
-  schemeName: https
-  ssl: fingerprint        # pwd, fingerprint, ca
-  fingerprint: 3f96bceb356611a7e6d660f4501f91ea3d13ebd732022c961b0cdda5f2d31f00
-  cadrt: D:\STUDY\SPRINGBOOT\hybird\elk\http_ca.crt
+#es:
+#  host: 172.19.164.132
+#  port: 9200
+#  username: elastic
+#  password: 1n=eBasM2jGx1EZF07DY
+#  schemeName: https
+#  ssl: fingerprint        # pwd, fingerprint, ca
+#  fingerprint: 3f96bceb356611a7e6d660f4501f91ea3d13ebd732022c961b0cdda5f2d31f00
+#  cadrt: D:\STUDY\SPRINGBOOT\hybird\elk\http_ca.crt
 
 doc:
   demoIndex: demo
